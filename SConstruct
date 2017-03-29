@@ -33,7 +33,7 @@ rootcint_env.Append( BUILDERS 		= { 'RootCint' : rootcint } )
 
 # hack to make the rootcint use abs path to headers
 rootcint_env[ "_CPPINCFLAGS" ] = "-I" + Dir(".").abspath + "/"
-
-root_dict = rootcint_env.RootCint( "FemtoDstDictionary.cpp", Glob( "*.h" ) )
-# Clean( root_dict, "src/TreeData/CintDictionary_rdict.pcm" )
+# print rootcint_env[ "_CPPINCFLAGS" ]
+root_dict = rootcint_env.RootCint( "DictionaryFemtoDst.cpp", Glob( "Femto*.h" ) )
+Clean( root_dict, "DictionaryFemtoDst.h" )
 rootcint_env.Alias( 'dict', root_dict )

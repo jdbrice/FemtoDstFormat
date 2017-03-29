@@ -29,5 +29,5 @@
 *.app
 
 
-*FemtoDstDictionary.*
+Dictionary*
 \.sconsign\.dblite
