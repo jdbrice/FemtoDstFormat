@@ -1,31 +1,19 @@
 import subprocess
 import os
 
-# SConscript('color_SConscript')
-# Import( 'env' )
-
 ROOTCFLAGS    	= subprocess.check_output( ['root-config',  '--cflags'] ).rstrip().split( " " )
-# ROOTLDFLAGS    	= subprocess.check_output( ["root-config",  "--ldflags"] )
-# ROOTLIBS      	= subprocess.check_output( ["root-config",  "--libs"] )
-# ROOTGLIBS     	= subprocess.check_output( ["root-config",  "--glibs"] )
-# ROOTLIBPATH 	= subprocess.check_output( ["root-config", "--libdir" ] )
 
 ROOT_SYS 		= os.environ[ "ROOTSYS" ]
-# JDB_LIB			= os.environ[ "JDB_LIB" ]
-# JDB_LIB_NAME 	= 'libRooBarb.a'
 
 cppDefines 		= {}
 cppFlags 		= ['-Wall' ]#, '-Werror']
 cxxFlags 		= ['-std=c++11' ]
 cxxFlags.extend( ROOTCFLAGS )
 
-paths 			= [ '.', 			# dont really like this but ended up needing for root dict to work ok
-					ROOT_SYS + "/include",
-					]
+paths 			= [ '.',  ROOT_SYS + "/include" ]
 
 ########################### ROOT dictionary creation ##########################
 LD_LIBRARY_PATH = os.environ.get( "LD_LIBRARY_PATH", "" )
-
 
 rootcint_env = Environment(ENV = {'PATH' : os.environ['PATH'], 'ROOTSYS' : os.environ[ "ROOTSYS" ], 'LD_LIBRARY_PATH' : LD_LIBRARY_PATH })
 rootcint = Builder( action='rootcint -f $TARGET -c $_CPPINCFLAGS $SOURCES.file' )  

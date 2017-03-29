@@ -2,12 +2,23 @@
 #define FEMTO_MTD_PID_TRAITS_H
 
 #include "TObject.h"
+#include "FemtoDstBranch.h"
 
-class FemtoMtdPidTraits : public TObject
+class FemtoMtdPidTraits : public TObject, public FemtoDstBranch
 {
 public:
+	virtual const char* name() const {return "FemtoMtdPidTraits"; }
 	FemtoMtdPidTraits(){ }
 	~FemtoMtdPidTraits(){ }
+
+	void reset(){
+		this->mDeltaY            = 0;
+		this->mDeltaZ            = 0;
+		this->mDeltaTimeOfFlight = 0;
+		this->mMatchFlag         = 0;
+		this->mMtdHitChan        = 0;
+		this->mTriggerFlag       = 0;
+	}
 
 	void copy( FemtoMtdPidTraits * that ){
 		this->mDeltaY            = that->mDeltaY;
@@ -17,6 +28,12 @@ public:
 		this->mMtdHitChan        = that->mMtdHitChan;
 	}
 
+	int backleg( ){
+		return mMtdHitChan / 60;
+	}
+	int module( ){
+		return ( mMtdHitChan % 60 ) / 12;
+	}
 	int cell() {
 		return mMtdHitChan % 12;
 	}

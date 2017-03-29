@@ -2,10 +2,12 @@
 #define FEMTO_TRACK_HELIX_H
 
 #include "TObject.h"
+#include "FemtoDstBranch.h"
 
-class FemtoTrackHelix : public TObject
+class FemtoTrackHelix : public TObject, public FemtoDstBranch
 {
 public:
+	virtual const char* name() const { return "FemtoTrackHelix"; }
 	FemtoTrackHelix(){ init(); }
 	~FemtoTrackHelix(){ }
 
