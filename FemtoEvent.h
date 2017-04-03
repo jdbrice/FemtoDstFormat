@@ -41,6 +41,11 @@ public:
 
 	int year() const { return (mRunId / 1000000) - 1 + 2000; }
 	
+	void vertex( Float_t x, Float_t y, Float_t z ){
+		this->mPrimaryVertex_mX1 = x;
+		this->mPrimaryVertex_mX2 = y;
+		this->mPrimaryVertex_mX3 = z;
+	}
 
 
 	Float_t 	mPrimaryVertex_mX1;		// Event VertexX

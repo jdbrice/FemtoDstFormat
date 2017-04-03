@@ -28,6 +28,11 @@ public:
 	}
 
 	UInt_t N() const { return _n; }
+	BranchType *at( UInt_t i ){
+		if ( nullptr == _carray )
+			return nullptr;
+		return (BranchType*)_carray->At( i );
+	}
 
 
 

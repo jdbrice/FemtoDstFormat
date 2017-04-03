@@ -17,9 +17,9 @@ public:
 	}
 
 	void reset(){
-		mPMomentum_mX1      = 0.0;
-		mPMomentum_mX2      = 0.0;
-		mPMomentum_mX3      = 0.0;
+		mPt                 = 0.0;
+		mEta                = 0.0;
+		mPhi                = 0.0;
 		mId                 = 0.0;
 		mDedx               = 0.0;
 		mNHitsFit           = 0.0;
@@ -36,12 +36,13 @@ public:
 		mMtdPidTraitsIndex  = -1;
 		mEmcPidTraitsIndex  = -1;
 		mHelixIndex         = -1;
+		mMcIndex            = -1;
 	}
 
 	void copy( FemtoTrack * that ) {
-		this->mPMomentum_mX1      = that->mPMomentum_mX1;
-		this->mPMomentum_mX2      = that->mPMomentum_mX2;
-		this->mPMomentum_mX3      = that->mPMomentum_mX3;
+		this->mPt                 = that->mPt;
+		this->mEta                = that->mEta;
+		this->mPhi                = that->mPhi;
 		this->mId                 = that->mId;
 		this->mDedx               = that->mDedx;
 		this->mNHitsFit           = that->mNHitsFit;
@@ -57,6 +58,7 @@ public:
 		this->mMtdPidTraitsIndex  = that->mMtdPidTraitsIndex;
 		this->mEmcPidTraitsIndex  = that->mEmcPidTraitsIndex;
 		this->mHelixIndex         = that->mHelixIndex;
+		this->mMcIndex            = that->mMcIndex;
 	}
 
 	int charge() { return mNHitsFit > 0 ? 1 : -1; }
@@ -76,19 +78,19 @@ public:
 		this->mDCA = dca * 1000; 
 	}
 
-	TVector3 pMomentum() { return TVector3( mPMomentum_mX1, mPMomentum_mX2, mPMomentum_mX3 ); }
-	void pMomentum( float pX, float pY, float pZ ) {
-		this->mPMomentum_mX1 = pX;
-		this->mPMomentum_mX2 = pY;
-		this->mPMomentum_mX3 = pZ;
+	TVector3 momentum() { TVector3 v; v.SetPtEtaPhi( mPt, mEta, mPhi ); return v; } 
+	void momentum( float pt, float eta, float phi ) { 
+		this->mPt  = pt;
+		this->mEta = eta;
+		this->mPhi = phi;
 	}
 	float dEdx() { return mDedx / 1000.0; }
 	void dEdx( float tmp ) { this->mDedx = tmp * 1000; }
 	
 
-	Float_t 	mPMomentum_mX1;					// primary track px
-	Float_t 	mPMomentum_mX2;					// primary track py
-	Float_t 	mPMomentum_mX3;					// primary track pz
+	Float_t 	mPt;				// primary track px
+	Float_t 	mEta;				// primary track py
+	Float_t 	mPhi;				// primary track pz
 	UShort_t 	mId;				// track Id
 	UShort_t 	mDedx;				// dEdx*1000
 	Char_t 		mNHitsFit;			// q*nHitsFit - TPC
@@ -105,6 +107,7 @@ public:
 	Short_t 	mMtdPidTraitsIndex;  // index of the MTD pidTratis in the event
 	Short_t 	mEmcPidTraitsIndex;  // index of the EMC pidTratis in the event
 	Short_t 	mHelixIndex;		 // index of associated Track Helix
+	Short_t 	mMcIndex;			 // index of associated Track Helix
 	
 	ClassDef( FemtoTrack, 3 )
 };

@@ -26,6 +26,7 @@ public:
 		this->mDeltaTimeOfFlight = that->mDeltaTimeOfFlight;
 		this->mMatchFlag         = that->mMatchFlag;
 		this->mMtdHitChan        = that->mMtdHitChan;
+		this->mTriggerFlag       = that->mTriggerFlag;
 	}
 
 	int backleg( ){

@@ -17,61 +17,54 @@ public:
   } 
  
   void reset(){ 
-    mPMomentum_mX1        = 0; 
-    mPMomentum_mX2        = 0; 
-    mPMomentum_mX3        = 0; 
-    mId                   = 0; 
-    mGeantPID             = 0; 
-    mCharge               = 0; 
-    mEnergy               = 0; 
-    mNHits                = 0; 
+    mPt              = 0;
+    mEta             = 0;
+    mPhi             = 0;
+    mId              = 0;
+    mGeantPID        = 0;
+    mCharge          = 0;
+    mEnergy          = 0;
+    mNHits           = 0;
  
-    mParentMcTrackIndex   = -1; 
-    mAssociatedTrackIndex = -1; 
-    mStartVertexIndex     = -1; 
-    mStopVertexIndex      = -1; 
+    mParentIndex     = -1;
+    mAssociatedIndex = -1;
   } 
  
   void copy( FemtoMcTrack * that ) { 
-    this->mPMomentum_mX1    = that->mPMomentum_mX1; 
-    this->mPMomentum_mX2    = that->mPMomentum_mX2; 
-    this->mPMomentum_mX3    = that->mPMomentum_mX3; 
-    this->mId               = that->mId; 
-    this->mGeantPID         = that->mGeantPID; 
-    this->mCharge           = that->mCharge; 
-    this->mEnergy           = that->mEnergy; 
-    this->mNHits            = that->mNHits; 
+    this->mPt        = that->mPt;
+    this->mEta       = that->mEta;
+    this->mPhi       = that->mPhi;
+    this->mId        = that->mId;
+    this->mGeantPID  = that->mGeantPID;
+    this->mCharge    = that->mCharge;
+    this->mEnergy    = that->mEnergy;
+    this->mNHits     = that->mNHits;
  
-    mParentMcTrackIndex     = that->mParentMcTrackIndex; 
-    mAssociatedTrackIndex   = that->mAssociatedTrackIndex; 
-    this->mStartVertexIndex = that->mStartVertexIndex; 
-    this->mStopVertexIndex  = that->mStopVertexIndex; 
+    mParentIndex     = that->mParentIndex;
+    mAssociatedIndex = that->mAssociatedIndex;
   } 
  
-  TVector3 pMomentum() { return TVector3( mPMomentum_mX1, mPMomentum_mX2, mPMomentum_mX3 ); } 
-  void pMomentum( float pX, float pY, float pZ ) { 
-    this->mPMomentum_mX1 = pX; 
-    this->mPMomentum_mX2 = pY; 
-    this->mPMomentum_mX3 = pZ; 
+  TVector3 momentum() { TVector3 v; v.SetPtEtaPhi( mPt, mEta, mPhi ); return v; } 
+  void momentum( float pt, float eta, float phi ) { 
+    this->mPt = pt; 
+    this->mEta = eta; 
+    this->mPhi = phi; 
   } 
    
    
  
-  Float_t   mPMomentum_mX1;          // primary track px 
-  Float_t   mPMomentum_mX2;          // primary track py 
-  Float_t   mPMomentum_mX3;          // primary track pz 
-  UShort_t   mId;        // track Id 
-  UShort_t   mGeantPID; 
-  Char_t     mCharge; 
+  Float_t   mPt;        // primary track px
+  Float_t   mEta;       // primary track py
+  Float_t   mPhi;       // primary track pz
+  UShort_t  mId;        // track Id 
+  UShort_t  mGeantPID; 
+  Char_t    mCharge; 
   Float_t   mEnergy; 
-  Char_t     mNHits; 
+  Char_t    mNHits; 
  
-  UShort_t   mParentMcTrackIndex; 
-  UShort_t   mAssociatedTrackIndex; 
-  UShort_t   mStartVertexIndex; 
-  UShort_t   mStopVertexIndex; 
- 
-   
+  Short_t   mParentIndex; 
+  Short_t   mAssociatedIndex; 
+  
   ClassDef( FemtoMcTrack, 1 ) 
 }; 
  
