@@ -2,7 +2,7 @@
 * @Author: Daniel
 * @Date:   2017-03-29 17:53:01
 * @Last Modified by:   Daniel
-* @Last Modified time: 2017-04-04 10:41:20
+* @Last Modified time: 2017-04-04 10:57:08
 *
 * MIT License
 * 
@@ -57,7 +57,7 @@ public:
 		if ( nullptr == _branch ) 
 			return;
 		// Create the TCA
-		this->_tca = new TClonesArray( BranchType().name() );
+		this->_tca = new TClonesArray( BranchType().classname() );
 		// Set the address against the ttree
 		tree->SetBranchAddress( branchName, &(this->_tca) );
 		// turn off autodelete (should be default anyways) - reuse memory instead of new object each time
