@@ -2,7 +2,7 @@
 * @Author: Daniel
 * @Date:   2017-04-04 10:23:43
 * @Last Modified by:   Daniel
-* @Last Modified time: 2017-04-04 10:53:38
+* @Last Modified time: 2017-04-04 10:56:16
 *
 * MIT License
 * 
@@ -35,7 +35,7 @@
 
 /* NOTE
  * Works with any class branchType, as long as it implements:
- * const char* name() const { return "classname"; }
+ * const char* classname() const { return "classname"; }
  */
 
 template<class BranchType>
@@ -46,7 +46,7 @@ public:
 	~TClonesArrayWriter() {}
 
 	void createBranch( TTree *tree, const char* name, int buffSize = 256000, int splitLevel = 99){
-		_tca = new TClonesArray( BranchType().name() );
+		_tca = new TClonesArray( BranchType().classname() );
 		tree->Branch( name, &this->_tca, buffSize, splitLevel );
 	}
 
