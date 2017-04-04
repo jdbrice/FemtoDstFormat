@@ -7,7 +7,7 @@
 class FemtoTrackHelix : public TObject, public FemtoDstBranch
 {
 public:
-	virtual const char* name() const { return "FemtoTrackHelix"; }
+	virtual const char* classname() const { return "FemtoTrackHelix"; }
 	FemtoTrackHelix(){ init(); }
 	~FemtoTrackHelix(){ }
 

@@ -7,7 +7,7 @@
 class FemtoBTofPidTraits : public TObject, public FemtoDstBranch
 {
 public:
-	virtual const char* name() const { return "FemtoBTofPidTraits"; }
+	virtual const char* classname() const { return "FemtoBTofPidTraits"; }
 	FemtoBTofPidTraits(){ reset(); }
 	~FemtoBTofPidTraits(){ }
 

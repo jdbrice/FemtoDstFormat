@@ -5,7 +5,7 @@ class FemtoDstBranch
 {
 public:
 	// virtual const char* branchName() const = 0;
-	virtual const char* name() const = 0;
+	virtual const char* classname() const = 0;
 
 	virtual ~FemtoDstBranch() {};
 };

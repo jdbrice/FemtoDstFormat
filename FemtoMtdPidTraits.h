@@ -7,7 +7,7 @@
 class FemtoMtdPidTraits : public TObject, public FemtoDstBranch
 {
 public:
-	virtual const char* name() const {return "FemtoMtdPidTraits"; }
+	virtual const char* classname() const {return "FemtoMtdPidTraits"; }
 	FemtoMtdPidTraits(){ }
 	~FemtoMtdPidTraits(){ }
 

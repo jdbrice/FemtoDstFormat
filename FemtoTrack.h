@@ -9,7 +9,7 @@
 class FemtoTrack : public TObject, public FemtoDstBranch
 {
 public:
-	virtual const char* name() const { return "FemtoTrack"; }
+	virtual const char* classname() const { return "FemtoTrack"; }
 	FemtoTrack(){
 		reset();
 	}

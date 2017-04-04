@@ -6,6 +6,7 @@
 class FemtoEvent : public TObject
 {
 public:
+	virtual const char* classname() const { return "FemtoEvent"; } 
 	FemtoEvent() {
 		mPrimaryVertex_mX1 = 0;
 		mPrimaryVertex_mX2 = 0;
