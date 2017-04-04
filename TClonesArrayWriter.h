@@ -2,7 +2,7 @@
 * @Author: Daniel
 * @Date:   2017-04-04 10:23:43
 * @Last Modified by:   Daniel
-* @Last Modified time: 2017-04-04 10:41:45
+* @Last Modified time: 2017-04-04 10:53:38
 *
 * MIT License
 * 
@@ -45,7 +45,7 @@ public:
 	TClonesArrayWriter() {}
 	~TClonesArrayWriter() {}
 
-	void createBranch( TTree *tree, const char* name, int buffsize = 256000, int splitLevel = 99){
+	void createBranch( TTree *tree, const char* name, int buffSize = 256000, int splitLevel = 99){
 		_tca = new TClonesArray( BranchType().name() );
 		tree->Branch( name, &this->_tca, buffSize, splitLevel );
 	}

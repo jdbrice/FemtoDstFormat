@@ -2,7 +2,7 @@
 * @Author: Daniel Brandenburg
 * @Date:   2017-04-04 10:26:37
 * @Last Modified by:   Daniel
-* @Last Modified time: 2017-04-04 10:48:21
+* @Last Modified time: 2017-04-04 10:53:45
 *
 * MIT License
 * 
@@ -41,7 +41,7 @@ public:
 	BranchWriter() {}
 	~BranchWriter() {}
 
-	void createBranch( TTree * tree, const char* name, int buffsize = 256000, int splitLevel = 99 ){
+	void createBranch( TTree * tree, const char* name, int buffSize = 256000, int splitLevel = 99 ){
 		this->_event = std::shared_ptr<BranchType>(new BranchType());
 		tree->Branch( name, this->_event.get(), buffSize, splitLevel );
 	}
