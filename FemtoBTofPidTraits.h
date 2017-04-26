@@ -4,7 +4,7 @@
 #include "TObject.h"
 #include "FemtoDstBranch.h"
 
-class FemtoBTofPidTraits : public TObject, public FemtoDstBranch
+class FemtoBTofPidTraits : public FemtoDstBranch
 {
 public:
 	virtual const char* classname() const { return "FemtoBTofPidTraits"; }

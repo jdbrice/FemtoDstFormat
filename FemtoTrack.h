@@ -6,7 +6,7 @@
 
 #include "FemtoDstBranch.h"
 
-class FemtoTrack : public TObject, public FemtoDstBranch
+class FemtoTrack : public FemtoDstBranch
 {
 public:
 	virtual const char* classname() const { return "FemtoTrack"; }

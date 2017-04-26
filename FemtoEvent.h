@@ -1,9 +1,9 @@
 #ifndef FEMTO_EVENT_H
 #define FEMTO_EVENT_H
 
-#include "TObject.h"
+#include "FemtoDstBranch.h"
 
-class FemtoEvent : public TObject
+class FemtoEvent : public FemtoDstBranch
 {
 public:
 	virtual const char* classname() const { return "FemtoEvent"; } 
