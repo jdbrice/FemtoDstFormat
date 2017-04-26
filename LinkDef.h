@@ -10,6 +10,7 @@
 #pragma link C++ class FemtoBTofPidTraits+;
 #pragma link C++ class FemtoMtdPidTraits+;
 #pragma link C++ class FemtoTrackHelix+;
+#pragma link C++ class FemtoDstBranch+;
 
 
 #endif 
