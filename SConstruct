@@ -19,9 +19,11 @@ rootcint_env = Environment(ENV = {'PATH' : os.environ['PATH'], 'ROOTSYS' : os.en
 rootcint = Builder( action='rootcint -f $TARGET -c $_CPPINCFLAGS $SOURCES.file' )  
 rootcint_env.Append( BUILDERS 		= { 'RootCint' : rootcint } )
 
+headers = [ "FemtoBtofPidTraits.h", "FemtoEvent.h", "FemtoMcTrack.h", "FemtoMtdPidTraits.h", "FemtoTrack.h", "FemtoTrackHelix.h"]
+
 # hack to make the rootcint use abs path to headers
 rootcint_env[ "_CPPINCFLAGS" ] = "-I" + Dir(".").abspath + "/"
 # print rootcint_env[ "_CPPINCFLAGS" ]
-root_dict = rootcint_env.RootCint( "DictionaryFemtoDst.cpp", Glob( "Femto*.h" ) )
+root_dict = rootcint_env.RootCint( "DictionaryFemtoDst.cpp", headers )
 Clean( root_dict, "DictionaryFemtoDst.h" )
 rootcint_env.Alias( 'dict', root_dict )
