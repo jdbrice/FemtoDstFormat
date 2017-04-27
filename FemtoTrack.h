@@ -3,6 +3,7 @@
 
 #include "TObject.h"
 #include "TVector3.h"
+#include "TLorentzVector.h"
 
 #include "FemtoDstBranch.h"
 
@@ -84,6 +85,12 @@ public:
 		this->mEta = eta;
 		this->mPhi = phi;
 	}
+	TLorentzVector lv( double m ) { 
+		TLorentzVector lv;
+		lv.SetPtEtaPhiM( mPt, mEta, mPhi, m );
+		return lv;
+	}
+
 	float dEdx() { return mDedx / 1000.0; }
 	void dEdx( float tmp ) { this->mDedx = tmp * 1000; }
 	
