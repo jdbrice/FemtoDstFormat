@@ -48,6 +48,23 @@ public:
 		this->mPrimaryVertex_mX3 = z;
 	}
 
+	template <typename T>
+	T v( string name ){
+		if ( name == "mPrimaryVertex_mX1" ) return mPrimaryVertex_mX1;
+		if ( name == "mPrimaryVertex_mX2" ) return mPrimaryVertex_mX2;
+		if ( name == "mPrimaryVertex_mX3" ) return mPrimaryVertex_mX3;
+		if ( name == "mWeight" ) return mWeight;
+		if ( name == "mRunId" ) return mRunId;
+		if ( name == "mEventId" ) return mEventId;
+		if ( name == "mTriggerWord" ) return mTriggerWord;
+		if ( name == "mTriggerWordMtd" ) return mTriggerWordMtd;
+		if ( name == "mGRefMult" ) return mGRefMult;
+		if ( name == "mPsi2" ) return mPsi2;
+		if ( name == "mBin16" ) return mBin16;
+		if ( name == "mRunIndex" ) return mRunIndex;
+		return 0;
+	}
+
 
 	Float_t 	mPrimaryVertex_mX1;		// Event VertexX
 	Float_t 	mPrimaryVertex_mX2;		// Event VertexY
