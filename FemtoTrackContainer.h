@@ -16,7 +16,10 @@ public:
 	shared_ptr<FemtoTrack>        _track=nullptr;
 	shared_ptr<FemtoMcTrack>      _mcTrack=nullptr;
 	shared_ptr<FemtoMtdPidTraits> _mtdPid=nullptr;
-	FemtoTrackProxy proxy;
+	FemtoTrackProxy _proxy;
+
+	size_t _runId = 0;
+	size_t _eventId = 0;
 
 	void setMtdPidTraits( TClonesArrayReader<FemtoMtdPidTraits> &_rMtd ){
 		if ( nullptr != this->_track && this->_track->mMtdPidTraitsIndex >= 0 && _rMtd.get( this->_track->mMtdPidTraitsIndex ) ){
@@ -33,13 +36,17 @@ public:
 
 		this->_mcTrack = nullptr;
 
-		if ( _rTracks.get( this->_mcTrack->mAssociatedIndex ) ){
+		if ( _rTracks.get( i ) ){
 			this->_track = shared_ptr<FemtoTrack>( new FemtoTrack() );
-			this->_track->copy( _rTracks.get( this->_mcTrack->mAssociatedIndex ) );
+			this->_track->copy( _rTracks.get( i ) );
 			setMtdPidTraits( _rMtd );
 		}
 		else 
 			this->_track = nullptr;
+
+		_proxy._mcTrack = nullptr;
+		_proxy._track = this->_track.get();
+		_proxy._mtdPid = this->_mtdPid.get();
 	}
 
 	void assemble( uint i, 
@@ -59,9 +66,9 @@ public:
 		}
 
 		// dangerous, thanks obama
-		proxy._mcTrack = this->_mcTrack.get();
-		proxy._track = this->_track.get();
-		proxy._mtdPid = this->_mtdPid.get();
+		_proxy._mcTrack = this->_mcTrack.get();
+		_proxy._track = this->_track.get();
+		_proxy._mtdPid = this->_mtdPid.get();
 	}
 
 };
