@@ -11,7 +11,7 @@ public:
 	FemtoTrackHelix(){ init(); }
 	~FemtoTrackHelix(){ }
 
-	virtual void init(){
+	virtual void reset(){
 		this->mPar[0] = 0;
 		this->mPar[1] = 0;
 		this->mPar[2] = 0;
@@ -21,6 +21,9 @@ public:
 		
 		this->mMap0 = 0;
 		this->mMap1 = 0;
+	}
+	virtual void init(){
+		reset();
 	}
 	void copy( FemtoTrackHelix * that){
 		this->mPar[0] = that->mPar[0];
