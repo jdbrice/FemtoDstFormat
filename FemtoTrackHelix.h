@@ -11,7 +11,7 @@ public:
 	FemtoTrackHelix(){ init(); }
 	~FemtoTrackHelix(){ }
 
-	virtual void init(){
+	virtual void reset(){
 		this->mPar[0] = 0;
 		this->mPar[1] = 0;
 		this->mPar[2] = 0;
@@ -21,6 +21,11 @@ public:
 		
 		this->mMap0 = 0;
 		this->mMap1 = 0;
+
+		this->mDCA = 50.0;
+	}
+	virtual void init(){
+		reset();
 	}
 	void copy( FemtoTrackHelix * that){
 		this->mPar[0] = that->mPar[0];
@@ -32,12 +37,15 @@ public:
 
 		this->mMap0 = that->mMap0;
 		this->mMap1 = that->mMap1;
+
+		this->mDCA = that->mDCA;
 	}
 
 	Float_t mPar[6];
 	UInt_t mMap0;
 	UInt_t mMap1;
-	ClassDef( FemtoTrackHelix, 2 )
+	Double_t mDCA;
+	ClassDef( FemtoTrackHelix, 3 )
 };
 
 #endif
