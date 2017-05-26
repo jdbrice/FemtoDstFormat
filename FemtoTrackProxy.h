@@ -3,6 +3,7 @@
 
 #include "FemtoTrack.h"
 #include "FemtoMcTrack.h"
+#include "FemtoTrackHelix.h"
 #include "FemtoMtdPidTraits.h"
 #include "TClonesArrayReader.h"
 
@@ -11,6 +12,7 @@
 class FemtoTrackProxy {
 public:
 	FemtoTrack        * _track   = nullptr;
+	FemtoTrackHelix   * _helix   = nullptr;
 	FemtoMcTrack      * _mcTrack = nullptr;
 	FemtoMtdPidTraits * _mtdPid  = nullptr;
 
@@ -27,11 +29,30 @@ public:
 			this->_mtdPid = nullptr;
 	}
 
+	void setHelix( TClonesArrayReader<FemtoTrackHelix> &_rHelices ){
+		if ( nullptr != this->_track && this->_track->mHelixIndex >= 0 )
+			this->_helix = _rHelices.get( this->_track->mHelixIndex );
+		else 
+			this->_helix = nullptr;
+	}
+
 	void assemble( uint i,
 					TClonesArrayReader<FemtoTrack> &_rTracks,
 					TClonesArrayReader<FemtoMtdPidTraits> &_rMtd ) {
 		this->_mcTrack = nullptr;
 		this->_track = _rTracks.get( i );
+		setMtdPidTraits( _rMtd );
+
+	}
+
+	void assemble( uint i,
+					TClonesArrayReader<FemtoTrack> &_rTracks,
+					TClonesArrayReader<FemtoTrackHelix> &_rHelices,
+					TClonesArrayReader<FemtoMtdPidTraits> &_rMtd ) {
+		
+		this->_mcTrack = nullptr;
+		this->_track = _rTracks.get( i );
+		setHelix( _rHelices );
 		setMtdPidTraits( _rMtd );
 
 	}
