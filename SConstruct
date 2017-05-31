@@ -15,7 +15,8 @@ paths 			= [ '.',  ROOT_SYS + "/include" ]
 ########################### ROOT dictionary creation ##########################
 LD_LIBRARY_PATH = os.environ.get( "LD_LIBRARY_PATH", "" )
 
-rootcint_env = Environment(ENV = {'PATH' : os.environ['PATH'], 'ROOTSYS' : os.environ[ "ROOTSYS" ], 'LD_LIBRARY_PATH' : LD_LIBRARY_PATH })
+rootcint_env = Environment(ENV = os.environ )
+# {'PATH' : os.environ['PATH'], 'ROOTSYS' : os.environ[ "ROOTSYS" ], 'LD_LIBRARY_PATH' : LD_LIBRARY_PATH })
 rootcint = Builder( action='rootcint -f $TARGET -c $_CPPINCFLAGS $SOURCES.file' )  
 rootcint_env.Append( BUILDERS 		= { 'RootCint' : rootcint } )
 
