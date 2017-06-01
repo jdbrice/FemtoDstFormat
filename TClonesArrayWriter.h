@@ -2,7 +2,7 @@
 * @Author: Daniel
 * @Date:   2017-04-04 10:23:43
 * @Last Modified by:   Daniel
-* @Last Modified time: 2017-06-01 10:59:23
+* @Last Modified time: 2017-06-01 11:29:49
 *
 * MIT License
 * 
@@ -59,7 +59,9 @@ public:
 
 	void reset(){
 		this->_n = 0;
-		if( nullptr != this->_tca )  this->_tca->Clear();
+		cout << "is nullptr? = " << this->_tca << endl;;
+		if( nullptr != this->_tca ) 
+			this->_tca->Clear();
 	}
 
 	UInt_t N() const { return _n; }
