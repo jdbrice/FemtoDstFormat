@@ -2,7 +2,7 @@
 * @Author: Daniel
 * @Date:   2017-04-04 10:23:43
 * @Last Modified by:   Daniel
-* @Last Modified time: 2017-04-04 10:56:16
+* @Last Modified time: 2017-06-01 10:59:23
 *
 * MIT License
 * 
@@ -51,6 +51,7 @@ public:
 	}
 
 	void add( BranchType &track ){
+		if ( nullptr == this->_tca ) return;
 		BranchType *new_track = new ((*this->_tca)[this->_n]) BranchType( );
 		new_track->copy( &track );
 		this->_n++;
@@ -58,7 +59,7 @@ public:
 
 	void reset(){
 		this->_n = 0;
-		this->_tca->Clear();
+		if( nullptr != this->_tca )  this->_tca->Clear();
 	}
 
 	UInt_t N() const { return _n; }
