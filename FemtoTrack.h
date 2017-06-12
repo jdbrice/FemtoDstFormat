@@ -3,10 +3,11 @@
 
 #include "TObject.h"
 #include "TVector3.h"
+#include "TLorentzVector.h"
 
 #include "FemtoDstBranch.h"
 
-class FemtoTrack : public TObject, public FemtoDstBranch
+class FemtoTrack : public FemtoDstBranch
 {
 public:
 	virtual const char* classname() const { return "FemtoTrack"; }
@@ -84,8 +85,38 @@ public:
 		this->mEta = eta;
 		this->mPhi = phi;
 	}
+	TLorentzVector lv( double m ) { 
+		TLorentzVector lv;
+		lv.SetPtEtaPhiM( mPt, mEta, mPhi, m );
+		return lv;
+	}
+
 	float dEdx() { return mDedx / 1000.0; }
 	void dEdx( float tmp ) { this->mDedx = tmp * 1000; }
+	
+	template <typename T>
+	T v( string name ){
+		if ( name == "mPt" ) return mPt;
+		if ( name == "mEta" ) return mEta;
+		if ( name == "mPhi" ) return mPhi;
+		if ( name == "mId" ) return mId;
+		if ( name == "mDedx" ) return mDedx;
+		if ( name == "mNHitsFit" ) return mNHitsFit;
+		if ( name == "mNHitsMax" ) return mNHitsMax;
+		if ( name == "mNHitsDedx" ) return mNHitsDedx;
+		if ( name == "mNSigmaPion" ) return nSigmaPion();
+		if ( name == "mNSigmaKaon" ) return nSigmaKaon();
+		if ( name == "mNSigmaProton" ) return nSigmaProton();
+		if ( name == "mNSigmaElectron" ) return nSigmaElectron();
+		if ( name == "mDCA" ) return gDCA();
+
+		if ( name == "mBTofPidTraitsIndex" ) return mBTofPidTraitsIndex;
+		if ( name == "mMtdPidTraitsIndex" ) return mMtdPidTraitsIndex;
+		if ( name == "mEmcPidTraitsIndex" ) return mEmcPidTraitsIndex;
+		if ( name == "mHelixIndex" ) return mHelixIndex;
+		if ( name == "mMcIndex" ) return mMcIndex;
+		return 0;
+	}
 	
 
 	Float_t 	mPt;				// primary track px

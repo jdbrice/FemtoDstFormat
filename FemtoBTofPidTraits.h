@@ -4,7 +4,7 @@
 #include "TObject.h"
 #include "FemtoDstBranch.h"
 
-class FemtoBTofPidTraits : public TObject, public FemtoDstBranch
+class FemtoBTofPidTraits : public FemtoDstBranch
 {
 public:
 	virtual const char* classname() const { return "FemtoBTofPidTraits"; }
@@ -30,7 +30,7 @@ public:
 	void zLocal( float zlocal ){this->mBTofZLocal = zlocal * 1000;}
 
 	float beta( ) {return this->mBTofBeta / 20000.0;}
-	void beta( float tmp ){this->mBTofZLocal = tmp * 20000;}
+	void beta( float tmp ){this->mBTofBeta = tmp * 20000;}
 
 	void matchFlag( int tmp ){ this->mBTofMatchFlag = tmp; }
 	int matchFlag() { return this->mBTofMatchFlag; }

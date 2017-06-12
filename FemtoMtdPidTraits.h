@@ -4,7 +4,7 @@
 #include "TObject.h"
 #include "FemtoDstBranch.h"
 
-class FemtoMtdPidTraits : public TObject, public FemtoDstBranch
+class FemtoMtdPidTraits : public FemtoDstBranch
 {
 public:
 	virtual const char* classname() const {return "FemtoMtdPidTraits"; }
@@ -39,6 +39,21 @@ public:
 	}
 	int cell() {
 		return mMtdHitChan % 12;
+	}
+
+	template <typename T>
+	T v( string name ){
+		if ( name == "mDeltaY" ) return mDeltaY;
+		if ( name == "mDeltaZ" ) return mDeltaZ;
+		if ( name == "mDeltaTimeOfFlight" ) return mDeltaTimeOfFlight;
+		if ( name == "mMatchFlag" ) return mMatchFlag;
+		if ( name == "mMtdHitChan" ) return mMtdHitChan;
+		if ( name == "mTriggerFlag" ) return mTriggerFlag;
+
+		if ( name == "backleg" ) return backleg();
+		if ( name == "module" ) return module();
+		if ( name == "cell" ) return cell();
+		return 0;
 	}
 
 	Float_t   mDeltaY;					// DeltaY between matched track-hit pair
