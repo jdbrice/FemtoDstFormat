@@ -3,16 +3,20 @@
 
 #include "FemtoTrack.h"
 #include "FemtoMcTrack.h"
+#include "FemtoTrackHelix.h"
 #include "FemtoMtdPidTraits.h"
+#include "FemtoBTofPidTraits.h"
 #include "TClonesArrayReader.h"
 
 
 
 class FemtoTrackProxy {
 public:
-	FemtoTrack        * _track   = nullptr;
-	FemtoMcTrack      * _mcTrack = nullptr;
-	FemtoMtdPidTraits * _mtdPid  = nullptr;
+	FemtoTrack         * _track   = nullptr;
+	FemtoTrackHelix    * _helix   = nullptr;
+	FemtoMcTrack       * _mcTrack = nullptr;
+	FemtoMtdPidTraits  * _mtdPid  = nullptr;
+	FemtoBTofPidTraits * _btofPid  = nullptr;
 
 	// extras
 	bool _fMcTrack = false;
@@ -26,6 +30,19 @@ public:
 		else 
 			this->_mtdPid = nullptr;
 	}
+	void setBTofPidTraits( TClonesArrayReader<FemtoBTofPidTraits> &_rBTof ){
+		if ( nullptr != this->_track && this->_track->mBTofPidTraitsIndex >= 0 )
+			this->_btofPid = _rBTof.get( this->_track->mBTofPidTraitsIndex );
+		else 
+			this->_btofPid = nullptr;
+	}
+
+	void setHelix( TClonesArrayReader<FemtoTrackHelix> &_rHelices ){
+		if ( nullptr != this->_track && this->_track->mHelixIndex >= 0 )
+			this->_helix = _rHelices.get( this->_track->mHelixIndex );
+		else 
+			this->_helix = nullptr;
+	}
 
 	void assemble( uint i,
 					TClonesArrayReader<FemtoTrack> &_rTracks,
@@ -33,6 +50,32 @@ public:
 		this->_mcTrack = nullptr;
 		this->_track = _rTracks.get( i );
 		setMtdPidTraits( _rMtd );
+
+	}
+
+	void assemble( uint i,
+					TClonesArrayReader<FemtoTrack> &_rTracks,
+					TClonesArrayReader<FemtoTrackHelix> &_rHelices,
+					TClonesArrayReader<FemtoMtdPidTraits> &_rMtd ) {
+		
+		this->_mcTrack = nullptr;
+		this->_track = _rTracks.get( i );
+		setHelix( _rHelices );
+		setMtdPidTraits( _rMtd );
+
+	}
+
+	void assemble( uint i,
+					TClonesArrayReader<FemtoTrack> &_rTracks,
+					TClonesArrayReader<FemtoTrackHelix> &_rHelices,
+					TClonesArrayReader<FemtoMtdPidTraits> &_rMtd, 
+					TClonesArrayReader<FemtoBTofPidTraits> &_rBTof ) {
+		
+		this->_mcTrack = nullptr;
+		this->_track = _rTracks.get( i );
+		setHelix( _rHelices );
+		setMtdPidTraits( _rMtd );
+		setBTofPidTraits( _rBTof );
 
 	}
 
