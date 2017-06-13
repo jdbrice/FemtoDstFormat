@@ -69,6 +69,23 @@ public:
 					TClonesArrayReader<FemtoTrack> &_rTracks,
 					TClonesArrayReader<FemtoTrackHelix> &_rHelices,
 					TClonesArrayReader<FemtoMtdPidTraits> &_rMtd, 
+					TClonesArrayReader<FemtoMcTrack> &_rMc ) {
+		
+
+		
+		this->_track = _rTracks.get( i );
+		this->_mcTrack   = nullptr;
+		if ( this->_track->mMcIndex >= 0 )
+			this->_mcTrack   = _rMc.get( this->_track->mMcIndex );
+		setHelix( _rHelices );
+		setMtdPidTraits( _rMtd );
+
+	}
+
+	void assemble( uint i,
+					TClonesArrayReader<FemtoTrack> &_rTracks,
+					TClonesArrayReader<FemtoTrackHelix> &_rHelices,
+					TClonesArrayReader<FemtoMtdPidTraits> &_rMtd, 
 					TClonesArrayReader<FemtoBTofPidTraits> &_rBTof ) {
 		
 		this->_mcTrack = nullptr;
