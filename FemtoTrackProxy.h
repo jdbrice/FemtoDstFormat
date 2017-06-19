@@ -96,6 +96,18 @@ public:
 
 	}
 
+	void assemble( uint i,
+					TClonesArrayReader<FemtoTrack> &_rTracks,
+					TClonesArrayReader<FemtoTrackHelix> &_rHelices,
+					TClonesArrayReader<FemtoBTofPidTraits> &_rBTof ) {
+		
+		this->_mcTrack = nullptr;
+		this->_track = _rTracks.get( i );
+		setHelix( _rHelices );
+		setBTofPidTraits( _rBTof );
+
+	}
+
 	void assemble( uint i, 
 					TClonesArrayReader<FemtoMcTrack> &_rMc, 
 					TClonesArrayReader<FemtoTrack> &_rTracks, 
