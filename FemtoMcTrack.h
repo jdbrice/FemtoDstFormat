@@ -28,6 +28,8 @@ public:
 
 		mParentIndex     = -1;
 		mAssociatedIndex = -1;
+		mStartVertexIndex = -1;
+		mStopVertexIndex = -1;
 	} 
 
 	void copy( FemtoMcTrack * that ) { 
@@ -42,6 +44,8 @@ public:
 
 		mParentIndex     = that->mParentIndex;
 		mAssociatedIndex = that->mAssociatedIndex;
+		mStartVertexIndex = that->mStartVertexIndex;
+		mStopVertexIndex = that->mStopVertexIndex;
 	} 
 
 	TVector3 momentum() { TVector3 v; v.SetPtEtaPhi( mPt, mEta, mPhi ); return v; } 
@@ -63,9 +67,11 @@ public:
 	Char_t    mNHits; 
 
 	Short_t   mParentIndex; 
-	Short_t   mAssociatedIndex; 
+	Short_t   mAssociatedIndex;
+	Short_t   mStartVertexIndex; 
+	Short_t   mStopVertexIndex; 
 
-	ClassDef( FemtoMcTrack, 1 ) 
+	ClassDef( FemtoMcTrack, 2 ) 
 }; 
 
 #endif
