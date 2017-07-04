@@ -20,7 +20,7 @@ rootcint_env = Environment(ENV = os.environ )
 rootcint = Builder( action='rootcint -f $TARGET -c $_CPPINCFLAGS $SOURCES.file' )  
 rootcint_env.Append( BUILDERS 		= { 'RootCint' : rootcint } )
 
-headers = [ "FemtoBTofPidTraits.h", "FemtoEvent.h", "FemtoMcTrack.h", "FemtoMtdPidTraits.h", "FemtoTrack.h", "FemtoTrackHelix.h", "FemtoDstBranch.h"]
+headers = [ "FemtoBTofPidTraits.h", "FemtoEvent.h", "FemtoMcTrack.h", "FemtoMcVertex.h", "FemtoMtdPidTraits.h", "FemtoTrack.h", "FemtoTrackHelix.h", "FemtoDstBranch.h"]
 
 # hack to make the rootcint use abs path to headers
 rootcint_env[ "_CPPINCFLAGS" ] = "-I" + Dir(".").abspath + "/"
