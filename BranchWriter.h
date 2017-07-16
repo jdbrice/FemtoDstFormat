@@ -49,6 +49,10 @@ public:
 	void set( BranchType &event ){
 		this->_event->copy( &event );
 	}
+	void set( BranchType *event ){
+		this->_event->copy( event );
+	}
+	
 
 protected:
 	std::shared_ptr<BranchType> _event = nullptr;

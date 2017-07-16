@@ -57,6 +57,13 @@ public:
 		this->_n++;
 	}
 
+	void add( BranchType *track ){
+		if ( nullptr == this->_tca || nullptr == track) return;
+		BranchType *new_track = new ((*this->_tca)[this->_n]) BranchType( );
+		new_track->copy( track );
+		this->_n++;
+	}
+
 	void reset(){
 		this->_n = 0;
 		if( nullptr != this->_tca ) 
