@@ -49,7 +49,7 @@ public:
 	}
 
 	template <typename T>
-	T v( string name ){
+	T v( std::string name ){
 		if ( name == "mPrimaryVertex_mX1" ) return mPrimaryVertex_mX1;
 		if ( name == "mPrimaryVertex_mX2" ) return mPrimaryVertex_mX2;
 		if ( name == "mPrimaryVertex_mX3" ) return mPrimaryVertex_mX3;

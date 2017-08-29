@@ -95,7 +95,7 @@ public:
 	void dEdx( float tmp ) { this->mDedx = tmp * 1000; }
 	
 	template <typename T>
-	T v( string name ){
+	T v( std::string name ){
 		if ( name == "mPt" ) return mPt;
 		if ( name == "mEta" ) return mEta;
 		if ( name == "mPhi" ) return mPhi;
