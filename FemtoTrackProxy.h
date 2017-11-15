@@ -23,6 +23,7 @@ public:
 	bool _fTrack   = false;
 	bool _fMtdPid  = false;
 	float _mass    = 0.0;	// mass assumption
+	float _pid     = -9;
 
 	void setMtdPidTraits( TClonesArrayReader<FemtoMtdPidTraits> &_rMtd ){
 		if ( nullptr != this->_track && this->_track->mMtdPidTraitsIndex >= 0 )
