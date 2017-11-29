@@ -3,6 +3,8 @@
  
 #include "TObject.h" 
 #include "TVector3.h" 
+
+#include "TLorentzVector.h"
  
 #include "FemtoDstBranch.h" 
  
@@ -54,6 +56,12 @@ public:
 		this->mEta = eta; 
 		this->mPhi = phi; 
 	} 
+
+	TLorentzVector lv( double m ) { 
+		TLorentzVector lv;
+		lv.SetPtEtaPhiM( mPt, mEta, mPhi, m );
+		return lv;
+	}
 
 
 
