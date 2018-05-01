@@ -25,6 +25,21 @@ public:
 	float _mass    = 0.0;	// mass assumption
 	float _pid     = -9;
 
+	void reset(){
+		_track   = nullptr;
+		_helix   = nullptr;
+		_mcTrack = nullptr;
+		_mtdPid  = nullptr;
+		_btofPid  = nullptr;
+
+		// extras
+		_fMcTrack = false;
+		_fTrack   = false;
+		_fMtdPid  = false;
+		_mass    = 0.0;	// mass assumption
+		_pid     = -9;
+	}
+
 	void setMtdPidTraits( TClonesArrayReader<FemtoMtdPidTraits> &_rMtd ){
 		if ( nullptr != this->_track && this->_track->mMtdPidTraitsIndex >= 0 )
 			this->_mtdPid = _rMtd.get( this->_track->mMtdPidTraitsIndex );
